@@ -8,11 +8,11 @@ watch = "Watch"
 mcbook = "Macbook"
 
 dict_columns = {
-    'acer': 3,
-    'brothers': 4,
-    'nikita': 5,
-    'tony': 6,
-    '112': 7,
+    'acer': "АСЕР",
+    'brothers': "братья",
+    'nikita': "никита",
+    'tony': "тони",
+    '112': "112",
 }
 
 
@@ -56,11 +56,11 @@ def get_goods_list_from_prices(file, filename):
                     size = "TB"
                 if ln == 6:
                     lst.append(
-                        str(dict_columns.get(provisioner)) + ip + " " + s[0] + " " + s[1] + " " + s[2] + " " + str(
+                        str(dict_columns.get(provisioner)) + " " + ip + " " + s[0] + " " + s[1] + " " + s[2] + " " + str(
                             s[3]) + size + " " + color + " " + str(s[5]))
                 else:
                     lst.append(
-                        str(dict_columns.get(provisioner)) + ip + " " + s[0] + " " + s[1] + " " + s[2] + " " + str(
+                        str(dict_columns.get(provisioner)) + " " + ip + " " + s[0] + " " + s[1] + " " + s[2] + " " + str(
                             s[3]) + size + " " + color + " " + str(s[6]))
             elif s[1].lower() == "pro":
                 color = s[3]
@@ -70,10 +70,10 @@ def get_goods_list_from_prices(file, filename):
                     color = "silver"
                 if s[2] == str("1") or s[2] == str("2"): size = "TB"
                 if ln == 5:
-                    lst.append(str(dict_columns.get(provisioner)) + ip + " " + s[0] + " " + s[1] + " " + str(
+                    lst.append(str(dict_columns.get(provisioner)) + " " + ip + " " + s[0] + " " + s[1] + " " + str(
                         s[2]) + size + " " + color + " " + str(s[4]))
                 else:
-                    lst.append(str(dict_columns.get(provisioner)) + ip + " " + s[0] + " " + s[1] + " " + str(
+                    lst.append(str(dict_columns.get(provisioner)) + " " + ip + " " + s[0] + " " + s[1] + " " + str(
                         s[2]) + size + " " + color + " " + str(s[5]))
             elif "se" in i.lower():
                 if ln == 4:
@@ -82,7 +82,7 @@ def get_goods_list_from_prices(file, filename):
                         color = "starlight"
                     elif color == "midnight":
                         color = "black"
-                    lst.append(str(dict_columns.get(provisioner)) + ip + " " + s[0] + " " + str(
+                    lst.append(str(dict_columns.get(provisioner)) + " " + ip + " " + s[0] + " " + str(
                         s[1]) + size + " " + color + " " + str(s[3]))
                 else:
                     color = s[3]
@@ -90,7 +90,7 @@ def get_goods_list_from_prices(file, filename):
                         color = "starlight"
                     elif color == "midnight":
                         color = "black"
-                    lst.append(str(dict_columns.get(provisioner)) + ip + " " + s[0] + str(s[1]) + " " + str(
+                    lst.append(str(dict_columns.get(provisioner)) + " " + ip + " " + s[0] + str(s[1]) + " " + str(
                         s[2]) + size + " " + color + " " + str(s[5]))
             elif s[1].lower() == "mini":
                 color = s[3]
@@ -100,10 +100,10 @@ def get_goods_list_from_prices(file, filename):
                     color = "white"
                 if ln == 5:
                     if s[2] == 1 or s[2] == 2: size = "TB"
-                    lst.append(str(dict_columns.get(provisioner)) + ip + " " + s[0] + " " + s[1] + " " + str(
+                    lst.append(str(dict_columns.get(provisioner)) + " " + ip + " " + s[0] + " " + s[1] + " " + str(
                         s[2]) + size + " " + color + " " + str(s[4]))
                 else:
-                    lst.append(str(dict_columns.get(provisioner)) + ip + " " + s[0] + " " + s[1] + " " + str(
+                    lst.append(str(dict_columns.get(provisioner)) + " " + ip + " " + s[0] + " " + s[1] + " " + str(
                         s[2]) + size + " " + color + " " + str(s[5]))
             elif s[1].lower() == "plus":
                 if s[2] == 1 or s[2] == 2: size = "TB"
@@ -113,10 +113,10 @@ def get_goods_list_from_prices(file, filename):
                 elif color == "black":
                     color = "midnight"
                 if ln == 5:
-                    lst.append(str(dict_columns.get(provisioner)) + ip + " " + s[0] + " " + s[1] + " " + str(
+                    lst.append(str(dict_columns.get(provisioner)) + " " + ip + " " + s[0] + " " + s[1] + " " + str(
                         s[2]) + size + " " + color + " " + str(s[4]))
                 else:
-                    lst.append(str(dict_columns.get(provisioner)) + ip + " " + s[0] + " " + s[1] + " " + str(
+                    lst.append(str(dict_columns.get(provisioner)) + " " + ip + " " + s[0] + " " + s[1] + " " + str(
                         s[2]) + size + " " + color + " " + str(s[5]))
             elif s[0].startswith("1"):
                 color = s[2]
@@ -127,10 +127,10 @@ def get_goods_list_from_prices(file, filename):
                         color = "starlight"
                 if ln == 4:
                     if s[1] == 1 or s[1] == 2: size = "TB"
-                    lst.append(str(dict_columns.get(provisioner)) + ip + " " + s[0] + " " + str(
+                    lst.append(str(dict_columns.get(provisioner)) + " " + ip + " " + s[0] + " " + str(
                         s[1]) + size + " " + color + " " + str(s[3]))
                 else:
-                    lst.append(str(dict_columns.get(provisioner)) + ip + " " + s[0] + " " + str(
+                    lst.append(str(dict_columns.get(provisioner)) + " " + ip + " " + s[0] + " " + str(
                         s[1]) + size + " " + color + " " + str(s[4]))
         elif airPds in i or aP in i:
             r = i.split()
