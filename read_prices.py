@@ -14,13 +14,22 @@ dict_columns = {
     '112': 7,
 }
 
+def clean_string(input_raw_string):
+    cyrilic = 'АаБбВвГгДдЕеЁёЖжЗзИиЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЪъЫыЬьЭэЮюЯя'
+    ascii_chars = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~'
+    nums = '123456789'
+    alloud = cyrilic + ascii_chars + nums
+    clean_str = ''
+    for i in input_raw_string:
+        if i in alloud:
+            clean_str += i
+    return clean_str
 
 def get_decoding_report(file):
     report = open(file, encoding="utf-8")
     lst = list()
     for i in report:
-        i_encode = i.encode("ascii", "ignore")
-        i_decode = i_encode.decode()
+        i_decode = clean_string(i)
         if i_decode != "\n":
             lst.append(i_decode)
     return lst
@@ -31,7 +40,7 @@ def get_goods_list_from_prices(file, filename):
     l = get_decoding_report(file)
     lst = list()
     for i in l:
-        if "(пред актив)" in i.lower(): continue
+        if "актив" in i or "Мятая коробка" in i: continue
         n = i.lower().replace("gb", "")
         f = n.replace("-", "")
         o = f.replace("(2sim)", "")
@@ -67,11 +76,16 @@ def get_goods_list_from_prices(file, filename):
                     lst.append(str(dict_columns.get(provisioner)) + "Умные часы Apple Watch SE 2 (2022) " + length + "mm " + color + " " + size + " " + arr[2])
                 elif ln == 4:
                     lst.append(str(dict_columns.get(provisioner)) + "Умные часы Apple Watch SE 2 (2022) " + length + "mm " + color + " " + size + " " + arr[3])
-            if "s8" in z:
-                ind = brackets.index("s8") + 2
+            if "s8" in z or "8" in z:
+                ind = 0
+                if "8" in z:
+                    ind = brackets.find("8") + 1
+                elif "s8" in z:
+                    ind = brackets.index("s8") + 2
                 stfrom = brackets[ind:]
                 arr = stfrom.split()
                 ln = len(arr)
+                if ln < 2: continue
                 length = arr[0]
                 color = arr[1]
                 if color == "grey" or color == "black" or color == "gray":
@@ -127,6 +141,8 @@ def get_goods_list_from_prices(file, filename):
                 ind = fllrepl.index(" 9 ") + 2
                 stfrom = fllrepl[ind:]
                 arr = stfrom.split()
+                ln = len(arr)
+                if ln < 2: continue
                 color = arr[1]
                 if color == "gray" or color == "grey":
                     color = "space grey"
@@ -141,10 +157,11 @@ def get_goods_list_from_prices(file, filename):
                 ind = fllrepl.index(" 10 ") + 3
                 stfrom = fllrepl[ind:]
                 arr = stfrom.split()
+                ln = len(arr)
+                if ln < 2: continue
                 color = arr[1]
                 if color == "white":
                     color = "silver"
-                ln = len(arr)
                 if ln == 3:
                     lst.append(str(dict_columns.get(provisioner)) + "Планшет Apple iPad 10 (2022) " + connection + " 10,9\" " + arr[0] + "gb " + color + " " + arr[2])
                 elif ln == 4:
@@ -163,6 +180,8 @@ def get_goods_list_from_prices(file, filename):
                     ind = sxrepl.index(" 129 ") + 4
                 stfrom = sxrepl[ind:]
                 arr = stfrom.split()
+                ln = len(arr)
+                if ln < 2: continue
                 color = arr[1]
                 if color == "white":
                     color = "silver"
@@ -172,7 +191,6 @@ def get_goods_list_from_prices(file, filename):
                 if arr[0] == str("1") or arr[0] == str("2"):
                     size = "tb"
                 memory = arr[0] + size
-                ln = len(arr)
                 if " 11 " in fllrepl:
                     if ln == 3:
                         lst.append(str(dict_columns.get(provisioner)) + "Планшет Apple iPad Pro 11 (2022) " + connection + " " + memory + " " + color + " " + arr[2])
